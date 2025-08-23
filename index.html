@@ -1,98 +1,3 @@
-<?php if (isset($_GET['status'])): ?>
-    <div id="contact-toast" class="toast-notification <?php echo $_GET['status'] == 'success' ? 'success' : 'error'; ?>">
-        <div class="toast-message">
-            <?php if ($_GET['status'] == 'success'): ?>
-                <i class="ti-check"></i> Thank you! I recieved your Message, I am going to contact you soon.
-            <?php else: ?>
-                <i class="ti-close"></i> Sorry, there was a problem sending your message. Please try again.
-            <?php endif; ?>
-        </div>
-        <div class="toast-progress"></div>
-    </div>
-    <style>
-        .toast-notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            min-width: 320px;
-            max-width: 90vw;
-            z-index: 9999;
-            background: #fff;
-            color: #333;
-            border-radius: 8px;
-            box-shadow: 0 4px 24px rgba(105,90,166,0.15);
-            padding: 18px 32px 18px 24px;
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 500;
-            opacity: 0;
-            transform: translateX(120%);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .toast-notification.success {
-            border-left: 6px solid #1bb74f;
-        }
-        .toast-notification.error {
-            border-left: 6px solid #ec185d;
-        }
-        .toast-notification .ti-check {
-            color: #1bb74f;
-            font-size: 1.4rem;
-            margin-right: 12px;
-        }
-        .toast-notification .ti-close {
-            color: #ec185d;
-            font-size: 1.4rem;
-            margin-right: 12px;
-        }
-        .toast-progress {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 4px;
-            width: 100%;
-            background: #eee;
-            border-radius: 0 0 8px 8px;
-            overflow: hidden;
-        }
-        .toast-notification.success .toast-progress-bar {
-            background: #1bb74f;
-        }
-        .toast-notification.error .toast-progress-bar {
-            background: #ec185d;
-        }
-        .toast-progress-bar {
-            height: 100%;
-            width: 100%;
-            transition: width 3s linear;
-        }
-    </style>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            var toast = document.getElementById('contact-toast');
-            if (toast) {
-                setTimeout(function() {
-                    toast.style.opacity = 1;
-                    toast.style.transform = 'translateX(0)';
-                }, 100);
-                // Progress bar
-                var progress = document.createElement('div');
-                progress.className = 'toast-progress-bar';
-                toast.querySelector('.toast-progress').appendChild(progress);
-                setTimeout(function() {
-                    progress.style.width = '0%';
-                }, 200);
-                // Hide after 3s
-                setTimeout(function() {
-                    toast.style.opacity = 0;
-                    toast.style.transform = 'translateX(120%)';
-                }, 3200);
-            }
-        });
-    </script>
-<?php endif; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,20 +13,20 @@
     <link rel="stylesheet" href="assets/css/meyawo.css">
     <style>
         /* ... existing styles ... */
+        
         .project-img-16x9 {
             width: 100%;
             aspect-ratio: 16/9;
             object-fit: cover;
             background: #eee;
         }
-
+        
         @supports not (aspect-ratio: 16/9) {
             .project-img-16x9 {
                 height: 0;
                 padding-bottom: 56.25%;
                 position: relative;
             }
-
             .project-img-16x9 img {
                 position: absolute;
                 top: 0;
@@ -141,7 +46,7 @@
         <div class="container">
             <a class="logo" href="#">Noman Khan</a>
             <ul class="nav">
-            <li class="item">
+                <li class="item">
                     <a class="link" href="#home">Home</a>
                 </li>
                 <li class="item">
@@ -175,7 +80,8 @@
                 </div>
             </a>
         </div>
-    </nav><!-- End of Page Navbar -->
+    </nav>
+    <!-- End of Page Navbar -->
 
     <!-- page header -->
     <header id="home" class="header">
@@ -189,7 +95,8 @@
 
             <button class="btn btn-primary">Visit My Works</button>
         </div>
-    </header><!-- end of page header -->
+    </header>
+    <!-- end of page header -->
 
     <!-- about section -->
     <section class="section pt-0" id="about">
@@ -204,19 +111,22 @@
                     <p class="section-subtitle">Who Am I ?</p>
                     <h2 class="section-title mb-3">About Me</h2>
                     <p>
-                        I'm a skilled Software Engineer with a strong focus on building robust backend systems and reliable software solutions. I have hands-on experience with PHP, MySQL, Python, and JavaScript—designing and maintaining secure, scalable infrastructures that power real-world applications.
-                        <br>
-                        Over the years, I've worked extensively with advanced frameworks and libraries like Laravel (PHP), NumPy and Pandas (Python), and asynchronous JavaScript (AJAX, Fetch API), which significantly improved my ability to build high-performance systems. Tackling complex tools such as TensorFlow and scikit-learn has deepened my understanding of data-driven development and machine learning pipelines.
-                        <br>
-                        Recently, I've expanded into the field of data science—learning how to turn raw data into meaningful insights using statistical analysis, data visualization, and predictive modeling. This fusion of backend engineering and data science has allowed me to craft solutions that are both technically efficient and strategically impactful.
-                        <br>
-                        I'm passionate about solving complex problems through clean, scalable code and constantly upgrading my skills to meet real-world business challenges through technology.
+                        I'm a skilled Software Engineer with a strong focus on building robust backend systems and reliable software solutions. I have hands-on experience with PHP, MySQL, Python, and JavaScript—designing and maintaining secure, scalable infrastructures that
+                        power real-world applications.
+                        <br> Over the years, I've worked extensively with advanced frameworks and libraries like Laravel (PHP), NumPy and Pandas (Python), and asynchronous JavaScript (AJAX, Fetch API), which significantly improved my ability to build
+                        high-performance systems. Tackling complex tools such as TensorFlow and scikit-learn has deepened my understanding of data-driven development and machine learning pipelines.
+                        <br> Recently, I've expanded into the field of data science—learning how to turn raw data into meaningful insights using statistical analysis, data visualization, and predictive modeling. This fusion of backend engineering and
+                        data science has allowed me to craft solutions that are both technically efficient and strategically impactful.
+                        <br> I'm passionate about solving complex problems through clean, scalable code and constantly upgrading my skills to meet real-world business challenges through technology.
                     </p>
                     <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
                 </div>
-            </div><!-- end of about wrapper -->
-        </div><!-- end of container -->
-    </section> <!-- end of about section -->
+            </div>
+            <!-- end of about wrapper -->
+        </div>
+        <!-- end of container -->
+    </section>
+    <!-- end of about section -->
 
     <!-- work experience section -->
     <section class="section" id="experience">
@@ -303,9 +213,11 @@
                         <img src="assets/imgs/proj32.png" class="card-img-top project-img-16x9" alt="Project 1 Main Image">
                         <div class="card-body text-left">
                             <h5 class="card-title">Tutor-Student Session Management Platform</h5>
-                            <p><strong>Overview:</strong> Developed a robust web application that enables tutors to list the subjects or sessions they offer and allows students to explore, purchase, and attend sessions directly through the platform. Features include session scheduling, tutor profiles, secure payment integration, and role-based dashboards.</p>
+                            <p><strong>Overview:</strong> Developed a robust web application that enables tutors to list the subjects or sessions they offer and allows students to explore, purchase, and attend sessions directly through the platform. Features
+                                include session scheduling, tutor profiles, secure payment integration, and role-based dashboards.</p>
                             <p><strong>Tech Stack:</strong> Laravel, MySQL, Blade Templates, Stripe (for payments), jQuery, Bootstrap</p>
-                            <p><strong>Impact:</strong> Streamlined tutor-student interaction, simplified discovery and purchase of tutoring sessions, enabled tutors to monetize their expertise efficiently, and provided students with easy access to quality academic help.</p>
+                            <p><strong>Impact:</strong> Streamlined tutor-student interaction, simplified discovery and purchase of tutoring sessions, enabled tutors to monetize their expertise efficiently, and provided students with easy access to quality
+                                academic help.</p>
                             <p><strong>Source Code:</strong> <a href="https://github.com/Develup-IT/Transacure" target="_blank">GitHub</a></p>
                             <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project1Modal">View details and Source code(Demo)</button>
                         </div>
@@ -372,7 +284,8 @@
                         <img src="assets/imgs/proj61.png" class="card-img-top project-img-16x9" alt="Project 6 Main Image">
                         <div class="card-body text-left">
                             <h5 class="card-title">Tour-Based Referral & Booking System</h5>
-                            <p><strong>Overview:</strong> Developed a Laravel-based tour referral platform where users can register by paying a booking amount and earn rewards by referring others to join the tour. The system tracks referrals, manages payments, and calculates commissions for each successful referral.</p>
+                            <p><strong>Overview:</strong> Developed a Laravel-based tour referral platform where users can register by paying a booking amount and earn rewards by referring others to join the tour. The system tracks referrals, manages payments,
+                                and calculates commissions for each successful referral.</p>
                             <p><strong>Tech Stack:</strong> Laravel, MySQL, Stripe/Razorpay, Blade, Bootstrap</p>
                             <p><strong>Impact:</strong> Enabled viral growth through referral incentives, ensured verified tour participation through paid bookings, and automated referral commission distribution for seamless earnings.</p>
                             <p><strong>Project Demo:</strong> <a href="https://sarvatonnaprinters.com/" target="_blank">sarvatonnaprinters.com</a></p>
@@ -468,7 +381,9 @@
                                 <!-- Right: Overview, Features, Challenges -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Built a comprehensive and scalable Laravel-based web application that bridges the gap between tutors and students by providing a centralized platform for session discovery, booking, and management. Tutors can create and manage their subject listings or tutoring sessions, while students can explore available sessions, view tutor profiles, make purchases, and attend sessions — all through a clean and secure interface.<br><br>The platform includes secure user registration, profile management, session booking, payment integration, and role-based access controls for Admin, Tutor, and Student.</p>
+                                    <p>Built a comprehensive and scalable Laravel-based web application that bridges the gap between tutors and students by providing a centralized platform for session discovery, booking, and management. Tutors can create
+                                        and manage their subject listings or tutoring sessions, while students can explore available sessions, view tutor profiles, make purchases, and attend sessions — all through a clean and secure interface.<br><br>The
+                                        platform includes secure user registration, profile management, session booking, payment integration, and role-based access controls for Admin, Tutor, and Student.</p>
                                     <h5 class="mt-4 mb-3">Key Features</h5>
                                     <ul>
                                         <li><b>Tutor Module:</b>
@@ -574,7 +489,8 @@
                                 <!-- Right: Overview, Features, Challenges -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Designed and built a full-stack system tailored for the export and manufacturing industry to digitize and streamline the entire export process, from product inquiry to order placement, documentation, and dispatch. This automation system replaces traditional manual tracking with a centralized online portal that improves coordination between exporters, buyers, and logistics.</p>
+                                    <p>Designed and built a full-stack system tailored for the export and manufacturing industry to digitize and streamline the entire export process, from product inquiry to order placement, documentation, and dispatch. This
+                                        automation system replaces traditional manual tracking with a centralized online portal that improves coordination between exporters, buyers, and logistics.</p>
                                     <h5 class="mt-4 mb-3">Core Functionalities</h5>
                                     <ul>
                                         <li><b>Product & Inquiry Management:</b>
@@ -705,7 +621,9 @@
                                 <!-- Right: Overview, Features, Security -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Developed a fully secure, role-based Investor Dashboard System that allows individual or institutional investors to track their investment performance, review financial data, receive key company updates, and download related documents — all through a personalized portal.<br><br>This system minimizes the need for emails and PDF sharing by giving real-time visibility into investment data and company health. Designed to work seamlessly for startups, private limited firms, or growing businesses managing multiple investors.</p>
+                                    <p>Developed a fully secure, role-based Investor Dashboard System that allows individual or institutional investors to track their investment performance, review financial data, receive key company updates, and download
+                                        related documents — all through a personalized portal.<br><br>This system minimizes the need for emails and PDF sharing by giving real-time visibility into investment data and company health. Designed to work seamlessly
+                                        for startups, private limited firms, or growing businesses managing multiple investors.</p>
                                     <h5 class="mt-4 mb-3">Core Features</h5>
                                     <ul>
                                         <li><b>Investor Portal:</b>
@@ -811,7 +729,9 @@
                                 <!-- Right: Overview, Features, Challenges -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Designed and implemented an intelligent Non-Player Character (NPC) communication system for gaming environments by fine-tuning a Large Language Model (LLM) to deliver context-aware dialogue. This system allows NPCs to dynamically respond to player actions, surroundings, and storyline progression, replacing rigid pre-scripted dialogues with adaptive, lifelike conversations.<br><br>This project bridges AI-powered natural language understanding with real-time game events to build emotionally intelligent, narratively rich, and unpredictable NPC behavior — paving the way for more immersive gameplay.</p>
+                                    <p>Designed and implemented an intelligent Non-Player Character (NPC) communication system for gaming environments by fine-tuning a Large Language Model (LLM) to deliver context-aware dialogue. This system allows NPCs
+                                        to dynamically respond to player actions, surroundings, and storyline progression, replacing rigid pre-scripted dialogues with adaptive, lifelike conversations.<br><br>This project bridges AI-powered natural language
+                                        understanding with real-time game events to build emotionally intelligent, narratively rich, and unpredictable NPC behavior — paving the way for more immersive gameplay.</p>
                                     <h5 class="mt-4 mb-3">Key Features</h5>
                                     <ul>
                                         <li><b>Contextual Dialogue Engine:</b>
@@ -922,7 +842,8 @@
                                 <!-- Right: Overview, Features, Challenges -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Built a specialized software solution for the printing and packaging industry, focusing on B2B operations where large orders, customizations, and approval cycles are involved. This platform digitizes the complete order lifecycle — from client onboarding to design upload, production tracking, and final dispatch — helping print manufacturers streamline operations, reduce delays, and maintain client transparency.</p>
+                                    <p>Built a specialized software solution for the printing and packaging industry, focusing on B2B operations where large orders, customizations, and approval cycles are involved. This platform digitizes the complete order
+                                        lifecycle — from client onboarding to design upload, production tracking, and final dispatch — helping print manufacturers streamline operations, reduce delays, and maintain client transparency.</p>
                                     <h5 class="mt-4 mb-3">Core Features</h5>
                                     <ul>
                                         <li><b>Client Portal:</b>
@@ -1021,7 +942,8 @@
                                 <!-- Right: Overview, Features, Challenges -->
                                 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                                     <h5 class="mb-3">Overview</h5>
-                                    <p>Designed and implemented a Laravel-powered web application for travel and tour agencies, integrating a paid referral system that incentivizes user growth. Users can register for a tour by paying a booking fee and generate a unique referral code or link. When others join using their referral, the original user earns a fixed or percentage-based commission, creating a passive earning structure tied to active participation.</p>
+                                    <p>Designed and implemented a Laravel-powered web application for travel and tour agencies, integrating a paid referral system that incentivizes user growth. Users can register for a tour by paying a booking fee and generate
+                                        a unique referral code or link. When others join using their referral, the original user earns a fixed or percentage-based commission, creating a passive earning structure tied to active participation.</p>
                                     <h5 class="mt-4 mb-3">Key Features</h5>
                                     <ul>
                                         <li><b>User Module:</b>
@@ -1089,7 +1011,8 @@
                     <div class="card border-0 shadow-sm pl-5">
                         <div class="card-body text-left">
                             <h5 class="card-title mb-1">Google Cloud</h5>
-                            <p class="mb-0">Earned the Google Cloud certification after completing 20+ hands-on labs and mastering the use of Google Cloud Console. Worked on real-world cloud computing tasks, including setting up cloud environments, managing virtual machines, implementing security practices, and configuring networking solutions.</p>
+                            <p class="mb-0">Earned the Google Cloud certification after completing 20+ hands-on labs and mastering the use of Google Cloud Console. Worked on real-world cloud computing tasks, including setting up cloud environments, managing virtual machines,
+                                implementing security practices, and configuring networking solutions.</p>
                         </div>
                     </div>
                 </div>
@@ -1209,9 +1132,12 @@
                 <div class="col-sm offset-sm-2 offset-md-3">
                     <button class="btn btn-lg my-font btn-light rounded" id="hireMeBtn">Hire Me</button>
                 </div>
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </section> <!-- end of section -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container -->
+    </section>
+    <!-- end of section -->
 
     <!-- blog section -->
     <section class="section" id="blog">
@@ -1232,17 +1158,17 @@
                             <a href="#"><i class="ti-heart text-danger"></i> 5</a>
                             <a href="#"><i class="ti-eye"></i> 3.9k+</a>
                         </p>
-                        <p>Hey folks,
-                            I'm working on a startup idea that's like Fiverr or Upwork but specifically built for non-tech founders and small businesses who struggle with hiring freelancers for tech or creative work.</p>
+                        <p>Hey folks, I'm working on a startup idea that's like Fiverr or Upwork but specifically built for non-tech founders and small businesses who struggle with hiring freelancers for tech or creative work.</p>
 
                         <p><b>What makes it different?</b>
                         </p>
-                        <p>✅ Verified Freelancers Only
-                            Freelancers can't just sign up and start bidding. They go through interviews, portfolio checks, and skill assessments before being allowed on the platform. This keeps quality high and eliminates fakes or underperformers.</p>
+                        <p>✅ Verified Freelancers Only Freelancers can't just sign up and start bidding. They go through interviews, portfolio checks, and skill assessments before being allowed on the platform. This keeps quality high and eliminates fakes
+                            or underperformers.</p>
 
                         <a href="https://www.reddit.com/r/StartUpIndia/comments/1lj60j1/is_this_the_dumbest_fiverrupwork_alternative_ever/" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
                 </div>
-            </div><!-- end of blog wrapper -->
+            </div>
+            <!-- end of blog wrapper -->
 
             <!-- blog-wrapper -->
             <div class="blog-card">
@@ -1258,23 +1184,21 @@
                             <a href="#"><i class="ti-eye"></i> 3.8k</a>
                         </p>
 
-                        <p>When you needed to build your startup's website, software, or product MVP — did you:
-
-                            Use freelancer platforms like Fiverr/Upwork?
-
-                            Hire someone in-house or outsource to an agency/team?
-
-                            If you did use a freelancer — which platform did you prefer, and were there any India-based platforms you trusted more than Fiverr/Upwork?</p>
+                        <p>When you needed to build your startup's website, software, or product MVP — did you: Use freelancer platforms like Fiverr/Upwork? Hire someone in-house or outsource to an agency/team? If you did use a freelancer — which platform
+                            did you prefer, and were there any India-based platforms you trusted more than Fiverr/Upwork?</p>
 
                         <a href="https://www.reddit.com/r/StartUpIndia/comments/1li9rhk/question_for_indian_founders_and_earlystage/" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
                 </div>
-            </div><!-- end of blog wrapper -->
+            </div>
+            <!-- end of blog wrapper -->
 
-        </div><!-- end of container -->
+        </div>
+        <!-- end of container -->
         <div class="text-center mt-4">
             <a href="blogs.html" class="btn btn-primary btn-lg">More Blogs</a>
         </div>
-    </section><!-- end of blog section -->
+    </section>
+    <!-- end of blog section -->
 
     <!-- contact section -->
     <section class="section" id="contact">
@@ -1282,7 +1206,7 @@
             <p class="section-subtitle">How can you communicate?</p>
             <h6 class="section-title mb-5">Contact Me</h6>
             <!-- contact form -->
-            <form action="contact.php" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
+            <form action="" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <input type="text" name="name" size="50" class="form-control" placeholder="Your Name" required>
@@ -1297,9 +1221,12 @@
                         <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
                     </div>
                 </div>
-            </form><!-- end of contact form -->
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
+            </form>
+            <!-- end of contact form -->
+        </div>
+        <!-- end of container -->
+    </section>
+    <!-- end of contact section -->
 
     <!-- footer -->
     <div class="container">
@@ -1318,7 +1245,8 @@
                 <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
             </div>
         </footer>
-    </div> <!-- end of page footer -->
+    </div>
+    <!-- end of page footer -->
 
     <!-- core  -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
@@ -1337,12 +1265,14 @@
                 hireBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     var contactSection = document.getElementById('contact');
-                    var textarea = document.querySelector('form[action="contact.php"] textarea[name="comment"]');
+                    var textarea = document.querySelector('form[action="#"] textarea[name="comment"]');
                     if (textarea) {
                         textarea.value = 'Hi Noman, I am interested in working with you on a project';
                     }
                     if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        contactSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     }
                 });
             }
