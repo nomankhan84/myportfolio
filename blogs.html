@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Noman Khan | Blog</title>
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <style>
+        body {
+            background: #f7f7fa;
+        }
+
+        .blog-header {
+            background: linear-gradient(120deg, #695aa6 0%, #4e3d7c 100%);
+            color: #fff;
+            padding: 80px 0 50px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .blog-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .blog-header .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 8px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 0;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(105, 90, 166, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.18s, box-shadow 0.18s;
+            min-height: 480px;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px) scale(1.025);
+            box-shadow: 0 8px 32px rgba(105, 90, 166, 0.18);
+        }
+
+        .blog-card-img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+        }
+
+        .blog-card-body {
+            flex: 1 1 auto;
+            padding: 28px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2d2350;
+        }
+
+        .blog-card-caption {
+            font-size: 0.98rem;
+            color: #8a8a8a;
+            margin-bottom: 12px;
+        }
+
+        .blog-card-body p {
+            flex: 1 1 auto;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        .blog-card-link,
+        .read-more-btn {
+            display: inline-block;
+            background: #695aa6;
+            color: #fff;
+            border-radius: 20px;
+            padding: 7px 22px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+
+        .blog-card-link:hover,
+        .read-more-btn:hover {
+            background: #4e3d7c;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 767px) {
+            .blog-header {
+                padding: 50px 0 30px 0;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                gap: 18px;
+            }
+
+            .blog-card {
+                min-height: 420px;
+            }
+        }
+
+        footer.footer {
+            background: none;
+            border-top: 1px solid #ececec;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blog-header">
+        <h1 style="color: #ffffff;">My Blog</h1>
+        <p class="lead" style="color: #ffffff;">Insights, stories, and tech musings by ME!</p>
+        <a href="index.php" class="btn btn-light back-btn"><i class="ti-angle-left"></i> Back to Portfolio</a>
+    </div>
+    <div class="container py-5">
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="assets/imgs/img-1.jpg" class="blog-card-img" alt="Blog 1">
+                <div class="blog-card-body">
+                    <div class="blog-card-title">Is This the Dumbest Fiverr/Upwork Alternative Ever? Probably.</div>
+                    <div class="blog-card-caption">By: Noman Khan | 5 <i class="ti-heart text-danger"></i> | 3.9k+ <i class="ti-eye"></i><br>on Reddit</div>
+                    <p>I'm working on a startup idea that's like Fiverr or Upwork but specifically built for non-tech founders and small businesses who struggle with hiring freelancers for tech or creative work.</p>
+                    <a href="https://www.reddit.com/r/StartUpIndia/comments/1lj60j1/is_this_the_dumbest_fiverrupwork_alternative_ever/" class="read-more-btn" target="_blank">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="assets/imgs/img-2.jpg" class="blog-card-img" alt="Blog 2">
+                <div class="blog-card-body">
+                    <div class="blog-card-title">Question for Indian founders and early-stage startups:</div>
+                    <div class="blog-card-caption">By: Noman Khan | 7 <i class="ti-heart text-danger"></i> | 3.8k <i class="ti-eye"></i><br>on Reddit</div>
+                    <p>When you needed to build your startup's website, software, or product MVP — did you use freelancer platforms like Fiverr/Upwork or hire in-house?</p>
+                    <a href="https://www.reddit.com/r/StartUpIndia/comments/1li9rhk/question_for_indian_founders_and_earlystage/" class="read-more-btn" target="_blank">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="assets/imgs/link1.png" class="blog-card-img" alt="Blog 3">
+                <div class="blog-card-body">
+                    <div class="blog-card-title">AI, a blessing or curse</div>
+                    <div class="blog-card-caption">By: Noman Khan | 7 <i class="ti-heart text-danger"></i> | 1.1k <i class="ti-eye"></i><br>on Linkedin</div>
+                    <p>Artificial intelligence (AI) has rapidly grown from a futuristic concept to an integral part of modern life, transforming industries and reshaping how we live, work, and interact with the world</p>
+                    <a href="https://www.linkedin.com/pulse/ai-blessing-curse-develup-tech-6v3gc" class="read-more-btn">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="assets/imgs/link3.png" class="blog-card-img" alt="Blog 4">
+                <div class="blog-card-body">
+                    <div class="blog-card-title">START - UP</div>
+                    <div class="blog-card-caption">By: Noman Khan | 4 <i class="ti-heart text-danger"></i> | 1.5k <i class="ti-eye"></i><br>on Linkedin</div>
+                    <p>A startup is a young company founded to develop a unique product or service, bring it to market, and scale it effectively. Unlike established businesses, startups are typically characterized by their innovative approach, high growth potential, and the goal of disrupting traditional industries.</p>
+                    <a href="https://www.linkedin.com/pulse/start-up-develup-tech-qx9ie" class="read-more-btn">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="assets/imgs/link2.png" class="blog-card-img" alt="Blog 4">
+                <div class="blog-card-body">
+                    <div class="blog-card-title">Blockchain, Beyond Cryptocurrency</div>
+                    <div class="blog-card-caption">By: Noman Khan| 5 <i class="ti-heart text-danger"></i> | 1.3k <i class="ti-eye"></i> <br>on Linkedin</div>
+                    <p>When most people hear "blockchain," they think of cryptocurrency. But as someone who recently had the chance to dive deep into this technology during a hackathon, I can tell you that blockchain's potential goes far beyond digital currencies.</p>
+                    <a href="https://www.linkedin.com/pulse/blockchain-beyond-cryptocurrency-develup-tech-w7vdc" class="read-more-btn">Read More</a>
+                </div>
+            </div>
+            <!-- More blog cards can be added here -->
+        </div>
+    </div>
+    <footer class="footer text-center py-4">
+        <p class="mb-0">&copy; <script>
+                document.write(new Date().getFullYear())
+            </script> Noman Khan. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

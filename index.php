@@ -1,0 +1,1354 @@
+<?php if (isset($_GET['status'])): ?>
+    <div id="contact-toast" class="toast-notification <?php echo $_GET['status'] == 'success' ? 'success' : 'error'; ?>">
+        <div class="toast-message">
+            <?php if ($_GET['status'] == 'success'): ?>
+                <i class="ti-check"></i> Thank you! I recieved your Message, I am going to contact you soon.
+            <?php else: ?>
+                <i class="ti-close"></i> Sorry, there was a problem sending your message. Please try again.
+            <?php endif; ?>
+        </div>
+        <div class="toast-progress"></div>
+    </div>
+    <style>
+        .toast-notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            min-width: 320px;
+            max-width: 90vw;
+            z-index: 9999;
+            background: #fff;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(105,90,166,0.15);
+            padding: 18px 32px 18px 24px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(120%);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .toast-notification.success {
+            border-left: 6px solid #1bb74f;
+        }
+        .toast-notification.error {
+            border-left: 6px solid #ec185d;
+        }
+        .toast-notification .ti-check {
+            color: #1bb74f;
+            font-size: 1.4rem;
+            margin-right: 12px;
+        }
+        .toast-notification .ti-close {
+            color: #ec185d;
+            font-size: 1.4rem;
+            margin-right: 12px;
+        }
+        .toast-progress {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 100%;
+            background: #eee;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .toast-notification.success .toast-progress-bar {
+            background: #1bb74f;
+        }
+        .toast-notification.error .toast-progress-bar {
+            background: #ec185d;
+        }
+        .toast-progress-bar {
+            height: 100%;
+            width: 100%;
+            transition: width 3s linear;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var toast = document.getElementById('contact-toast');
+            if (toast) {
+                setTimeout(function() {
+                    toast.style.opacity = 1;
+                    toast.style.transform = 'translateX(0)';
+                }, 100);
+                // Progress bar
+                var progress = document.createElement('div');
+                progress.className = 'toast-progress-bar';
+                toast.querySelector('.toast-progress').appendChild(progress);
+                setTimeout(function() {
+                    progress.style.width = '0%';
+                }, 200);
+                // Hide after 3s
+                setTimeout(function() {
+                    toast.style.opacity = 0;
+                    toast.style.transform = 'translateX(120%)';
+                }, 3200);
+            }
+        });
+    </script>
+<?php endif; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Explore the portfolio of Noman Khan – a passionate backend developer and software engineer specializing in web applications, APIs, and scalable business solutions. Discover projects, experience, and technical skills.">
+    <meta name="author" content="Devcrud">
+    <title>Noman Khan Portfolio</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <style>
+        /* ... existing styles ... */
+        .project-img-16x9 {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        @supports not (aspect-ratio: 16/9) {
+            .project-img-16x9 {
+                height: 0;
+                padding-bottom: 56.25%;
+                position: relative;
+            }
+
+            .project-img-16x9 img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="#">Noman Khan</a>
+            <ul class="nav">
+            <li class="item">
+                    <a class="link" href="#home">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#about">About</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#experience">Experience</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#projects">Projects</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#certifications">Certifications</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#profile-details">Others</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#skills">Skills</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#contact">Contact</a>
+                </li>
+                <li class="item ml-md-3">
+                    <a href="blogs.html" class="btn btn-primary">My Blogs</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </a>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <!-- page header -->
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content container">
+            <h1 class="header-title">
+                <span class="up">HI!</span>
+                <span class="down">I am Noman Khan</span>
+            </h1>
+            <p class="header-subtitle">Software Engineer</p>
+
+            <button class="btn btn-primary">Visit My Works</button>
+        </div>
+    </header><!-- end of page header -->
+
+    <!-- about section -->
+    <section class="section pt-0" id="about">
+        <!-- container -->
+        <div class="container text-center">
+            <!-- about wrapper -->
+            <div class="about">
+                <div class="about-img-holder">
+                    <img src="assets/imgs/noman.png" class="about-img" alt="Noman Khan">
+                </div>
+                <div class="about-caption">
+                    <p class="section-subtitle">Who Am I ?</p>
+                    <h2 class="section-title mb-3">About Me</h2>
+                    <p>
+                        I'm a skilled Software Engineer with a strong focus on building robust backend systems and reliable software solutions. I have hands-on experience with PHP, MySQL, Python, and JavaScript—designing and maintaining secure, scalable infrastructures that power real-world applications.
+                        <br>
+                        Over the years, I've worked extensively with advanced frameworks and libraries like Laravel (PHP), NumPy and Pandas (Python), and asynchronous JavaScript (AJAX, Fetch API), which significantly improved my ability to build high-performance systems. Tackling complex tools such as TensorFlow and scikit-learn has deepened my understanding of data-driven development and machine learning pipelines.
+                        <br>
+                        Recently, I've expanded into the field of data science—learning how to turn raw data into meaningful insights using statistical analysis, data visualization, and predictive modeling. This fusion of backend engineering and data science has allowed me to craft solutions that are both technically efficient and strategically impactful.
+                        <br>
+                        I'm passionate about solving complex problems through clean, scalable code and constantly upgrading my skills to meet real-world business challenges through technology.
+                    </p>
+                    <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
+                </div>
+            </div><!-- end of about wrapper -->
+        </div><!-- end of container -->
+    </section> <!-- end of about section -->
+
+    <!-- work experience section -->
+    <section class="section" id="experience">
+        <div class="container text-center">
+            <p class="section-subtitle">Where Have I Worked?</p>
+            <h6 class="section-title mb-6">Work Experience</h6>
+            <div class="timeline mx-auto" style="max-width:700px; position:relative;">
+                <!-- Experience 1 -->
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5" style="min-height:120px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Creative World Pte. Ltd. <span class="badge badge-secondary ml-2">04/2025 - PRESENT</span></h5>
+                            <div class="text-primary mb-2">Data Science Intern</div>
+                            <ul class="mb-0 pl-3 text-left">
+                                <li>Designed and developed data science software to support creative teams in analyzing content performance and audience engagement.</li>
+                                <li>Built custom analytics tools that visualize key metrics for marketing and visual campaigns to aid data-driven creative decisions.</li>
+                                <li>Integrated machine learning models to generate insights.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experience 2 -->
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5" style="min-height:120px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">GHP Products Pvt Ltd <span class="badge badge-secondary ml-2">08/2024 - 04/2025</span></h5>
+                            <div class="text-primary mb-2">Backend Developer</div>
+                            <ul class="mb-0 pl-3 text-left">
+                                <li>Developed and executed comprehensive websites and business software aligned with company goals.</li>
+                                <li>Led, mentored, and managed a high-performing development team.</li>
+                                <li>Monitored website consistency and ensured quality output.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experience 3 -->
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5" style="min-height:120px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">DevelupTech (Freelancer) <span class="badge badge-secondary ml-2">12/2023 - 05/2025</span></h5>
+                            <div class="text-primary mb-2">Backend Developer</div>
+                            <ul class="mb-0 pl-3 text-left">
+                                <li>Created and managed websites based on client requirements.</li>
+                                <li>Managed a small team for quality output and onboarding new clients.</li>
+                                <li>Created custom software for companies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experience 4 -->
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5" style="min-height:120px;">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">RG Labs (Internship) <span class="badge badge-secondary ml-2">05/2024 - 07/2024</span></h5>
+                            <div class="text-primary mb-2">Backend Developer</div>
+                            <ul class="mb-0 pl-3 text-left">
+                                <li>Developed and learned solutions for business using advanced technologies.</li>
+                                <li>Collaborated with teams to design scalable backend architectures.</li>
+                                <li>Learned industry-level software and tools for backend development.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vertical line -->
+                <div style="position:absolute; left:-22px; top:0; bottom:0; width:2px; background:#695aa6; z-index:0;"></div>
+            </div>
+        </div>
+    </section>
+    <!-- end of work experience section -->
+
+    <!-- projects section -->
+    <section class="section" id="projects">
+        <div class="container text-center">
+            <p class="section-subtitle">What Have I Built?</p>
+            <h6 class="section-title mb-6">Projects</h6>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj32.png" class="card-img-top project-img-16x9" alt="Project 1 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">Tutor-Student Session Management Platform</h5>
+                            <p><strong>Overview:</strong> Developed a robust web application that enables tutors to list the subjects or sessions they offer and allows students to explore, purchase, and attend sessions directly through the platform. Features include session scheduling, tutor profiles, secure payment integration, and role-based dashboards.</p>
+                            <p><strong>Tech Stack:</strong> Laravel, MySQL, Blade Templates, Stripe (for payments), jQuery, Bootstrap</p>
+                            <p><strong>Impact:</strong> Streamlined tutor-student interaction, simplified discovery and purchase of tutoring sessions, enabled tutors to monetize their expertise efficiently, and provided students with easy access to quality academic help.</p>
+                            <p><strong>Source Code:</strong> <a href="https://github.com/Develup-IT/Transacure" target="_blank">GitHub</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project1Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj11.png" class="card-img-top project-img-16x9" alt="Project 2 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">Export Industry Workflow Automation System</h5>
+                            <p><strong>Overview:</strong> Developed a comprehensive system for the export industry to streamline the entire export workflow.</p>
+                            <p><strong>Tech Stack:</strong> Python, PHP, MySQL, Bootstrap, JavaScript, cPanel</p>
+                            <p><strong>Impact:</strong> Simplified the export purchasing process, improved operational efficiency for exporters, and enhanced buyer experience with transparent, real-time product access and order flow.</p>
+                            <p><strong>Source Code:</strong> <a href="https://ghp-sg.com/" target="_blank">Website</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project2Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj41.png" class="card-img-top project-img-16x9" alt="Project 3 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">Investor Dashboard Platform</h5>
+                            <p><strong>Overview:</strong> Built a secure and interactive dashboard for investors to monitor their investment status, company performance metrics, reports, updates, and key financial indicators in real time.</p>
+                            <p><strong>Tech Stack:</strong> Laravel, MySQL, Blade, Chart.js, Bootstrap</p>
+                            <p><strong>Impact:</strong> Improved investor transparency, reduced manual communication, and provided a centralized platform for performance insights and report tracking.</p>
+                            <p><strong>Source Code:</strong> <a href="https://github.com/nomankhan984/policyengine" target="_blank">GitHub</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project3Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj52.png" class="card-img-top project-img-16x9" alt="Project 4 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">AI-Powered NPC Interaction System for Gaming</h5>
+                            <p><strong>Overview:</strong> Developed an intelligent NPC communication system by fine-tuning a LLM to respond contextually based on in-game scenarios.</p>
+                            <p><strong>Tech Stack:</strong> Python, TensorFlow, OpenAI API, Game Integration</p>
+                            <p><strong>Impact:</strong> Elevated player engagement with realistic, adaptive NPC interactions, setting a foundation for more immersive and interactive gaming experiences.</p>
+                            <p><strong>Source Code:</strong> <a href="https://github.com/Develup-IT/Veronica" target="_blank">GitHub</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project4Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj21.png" class="card-img-top project-img-16x9" alt="Project 5 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">Custom B2B Channel</h5>
+                            <p><strong>Overview:</strong> Developed a tailored B2B software solution to streamline operations in the printing industry by optimizing order processing and inventory management.</p>
+                            <p><strong>Tech Stack:</strong> PHP, MySQL, JavaScript, Custom APIs</p>
+                            <p><strong>Impact:</strong> Improved operational efficiency, reduced manual errors, and enabled seamless collaboration between suppliers and clients, contributing to more sustainable and cost-effective production practices.</p>
+                            <p><strong>Project Demo:</strong> <a href="https://sarvatonnaprinters.com/" target="_blank">sarvatonnaprinters.com</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project5Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/imgs/proj61.png" class="card-img-top project-img-16x9" alt="Project 6 Main Image">
+                        <div class="card-body text-left">
+                            <h5 class="card-title">Tour-Based Referral & Booking System</h5>
+                            <p><strong>Overview:</strong> Developed a Laravel-based tour referral platform where users can register by paying a booking amount and earn rewards by referring others to join the tour. The system tracks referrals, manages payments, and calculates commissions for each successful referral.</p>
+                            <p><strong>Tech Stack:</strong> Laravel, MySQL, Stripe/Razorpay, Blade, Bootstrap</p>
+                            <p><strong>Impact:</strong> Enabled viral growth through referral incentives, ensured verified tour participation through paid bookings, and automated referral commission distribution for seamless earnings.</p>
+                            <p><strong>Project Demo:</strong> <a href="https://sarvatonnaprinters.com/" target="_blank">sarvatonnaprinters.com</a></p>
+                            <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#project6Modal">View details and Source code(Demo)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 1 Modal -->
+        <div class="modal fade" id="project1Modal" tabindex="-1" role="dialog" aria-labelledby="project1ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project1ModalLabel">Tutor-Student Session Management Platform</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject1" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj31.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj32.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj33.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj34.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj35.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj36.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj37.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj38.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj39.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject1" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject1" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Backend:</b> Laravel (PHP)</li>
+                                            <li><b>Frontend:</b> Blade Templates, Bootstrap, jQuery</li>
+                                            <li><b>Database:</b> MySQL</li>
+                                            <li><b>Authentication:</b> Laravel Breeze with role-based access control (RBAC)</li>
+                                            <li><b>Payment Gateway:</b> Stripe</li>
+                                            <li><b>Notifications:</b> Email (via Laravel Notification), in-app alerts</li>
+                                            <li><b>Deployment:</b> Apache/Nginx, cPanel or shared hosting environment</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Enabled tutors to digitally monetize their skills without needing external tools or platforms.</li>
+                                            <li>Gave students a one-stop solution for personalized learning from vetted educators.</li>
+                                            <li>Reduced manual scheduling overhead via automated calendar syncing and notifications.</li>
+                                            <li>Improved platform scalability through modular codebase and role segregation.</li>
+                                            <li>Supported a commission-based revenue model for the platform owner.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Challenges Overcome</h6>
+                                        <ul>
+                                            <li>Designed a clean RBAC structure ensuring complete isolation between user roles.</li>
+                                            <li>Implemented payment logic with success/failure handling and transaction rollback.</li>
+                                            <li>Built conflict-free session scheduling to prevent double bookings.</li>
+                                            <li>Ensured mobile responsiveness and user-friendly interfaces for diverse age groups.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Challenges -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Built a comprehensive and scalable Laravel-based web application that bridges the gap between tutors and students by providing a centralized platform for session discovery, booking, and management. Tutors can create and manage their subject listings or tutoring sessions, while students can explore available sessions, view tutor profiles, make purchases, and attend sessions — all through a clean and secure interface.<br><br>The platform includes secure user registration, profile management, session booking, payment integration, and role-based access controls for Admin, Tutor, and Student.</p>
+                                    <h5 class="mt-4 mb-3">Key Features</h5>
+                                    <ul>
+                                        <li><b>Tutor Module:</b>
+                                            <ul>
+                                                <li>Session Creation: Tutors can list subjects/sessions with title, description, price, availability, and preferred timings.</li>
+                                                <li>Profile Management: Tutors can manage their teaching profile, education background, and expertise areas.</li>
+                                                <li>Session History: View a history of sessions taught, earnings, and upcoming classes.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Student Module:</b>
+                                            <ul>
+                                                <li>Session Discovery: Browse available subjects by category, tutor rating, or availability.</li>
+                                                <li>Session Booking: Securely book a session and receive notifications and reminders.</li>
+                                                <li>Payment Gateway Integration: Integrated with Stripe for seamless and secure session purchases.</li>
+                                                <li>Session Dashboard: View past sessions, upcoming bookings, and request follow-ups.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Admin Module:</b>
+                                            <ul>
+                                                <li>User Management: View, verify, or block tutors and students.</li>
+                                                <li>Session Oversight: Monitor listed sessions and earnings overview.</li>
+                                                <li>Revenue Management: Track platform commissions, payouts, and transaction logs.</li>
+                                                <li>Support Interface: Provide helpdesk or issue resolution between users.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project 2 Modal -->
+        <div class="modal fade" id="project2Modal" tabindex="-1" role="dialog" aria-labelledby="project2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project2ModalLabel">Export Industry Workflow Automation System</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject2" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj11.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj12.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj13.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj14.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj15.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject2" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject2" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Backend:</b> Python (Flask/Django) for automation tasks, PHP (Laravel/Core PHP) for main web backend</li>
+                                            <li><b>Frontend:</b> Bootstrap, JavaScript, jQuery</li>
+                                            <li><b>Database:</b> MySQL</li>
+                                            <li><b>File Handling:</b> cPanel file management and storage</li>
+                                            <li><b>Deployment:</b> Shared Hosting or VPS with cPanel and Apache</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Reduced manual coordination time by over 70%, especially in inquiry-to-order conversions.</li>
+                                            <li>Increased buyer transparency, resulting in higher trust and repeat orders.</li>
+                                            <li>Improved operational tracking across departments (sales, production, logistics).</li>
+                                            <li>Replaced disconnected Excel/email-based workflows with a centralized cloud solution.</li>
+                                            <li>Enhanced exporter productivity by automating document generation and communication.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Challenges Overcome</h6>
+                                        <ul>
+                                            <li>Built a multi-role platform with isolated access and role-specific functionality.</li>
+                                            <li>Developed a real-time status flow system that maps with actual export timelines.</li>
+                                            <li>Ensured secure and versioned document handling using dynamic folders and file tagging.</li>
+                                            <li>Integrated offline tracking abilities in case of no internet connectivity at factories.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Challenges -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Designed and built a full-stack system tailored for the export and manufacturing industry to digitize and streamline the entire export process, from product inquiry to order placement, documentation, and dispatch. This automation system replaces traditional manual tracking with a centralized online portal that improves coordination between exporters, buyers, and logistics.</p>
+                                    <h5 class="mt-4 mb-3">Core Functionalities</h5>
+                                    <ul>
+                                        <li><b>Product & Inquiry Management:</b>
+                                            <ul>
+                                                <li>Exporters can list products with specifications, HS codes, pricing, MOQ, and packaging details.</li>
+                                                <li>Buyers can browse products, submit inquiries, and request quotes.</li>
+                                                <li>Inquiry dashboard allows exporters to manage and respond to incoming leads in real-time.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Purchase & Order Flow:</b>
+                                            <ul>
+                                                <li>Buyers can convert approved inquiries into official orders.</li>
+                                                <li>Exporters manage all order stages: confirmation, production, packaging, and shipment.</li>
+                                                <li>Includes a status tracking system for both buyers and internal teams.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Document Generation & Upload:</b>
+                                            <ul>
+                                                <li>Auto-generates invoices, proforma invoices, packing lists, and shipping bills in PDF.</li>
+                                                <li>Exporters can upload certifications like Fumigation, Phytosanitary, or SGS.</li>
+                                                <li>Maintains a digital document repository for each order.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Logistics Coordination:</b>
+                                            <ul>
+                                                <li>Integrated shipment module to manage container bookings and track dispatch schedules.</li>
+                                                <li>Space for logistics providers to update real-time delivery and port details.</li>
+                                                <li>Exporter panel for managing custom clearance and dispatch confirmation.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Buyer Portal:</b>
+                                            <ul>
+                                                <li>Buyers receive their own login access to track order progress, view product documents, and communicate with exporters directly.</li>
+                                                <li>Transparent communication history and document access improves buyer trust.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Admin Panel:</b>
+                                            <ul>
+                                                <li>Role-based access for admins, sales, production, and logistics teams.</li>
+                                                <li>Real-time dashboard for active inquiries, pending orders, production delays, and shipment pipeline.</li>
+                                                <li>Exportable reports for accounting and compliance purposes.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project 3 Modal -->
+        <div class="modal fade" id="project3Modal" tabindex="-1" role="dialog" aria-labelledby="project3ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project3ModalLabel">Investor Dashboard Platform for Company Stakeholders</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject3" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj41.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj42.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj43.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj44.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj45.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj46.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj47.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj48.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject3" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject3" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Backend:</b> Laravel (PHP)</li>
+                                            <li><b>Frontend:</b> Blade Templates, Bootstrap 5, Chart.js</li>
+                                            <li><b>Database:</b> MySQL</li>
+                                            <li><b>Authentication:</b> Laravel Breeze/Fortify with 2FA (optional)</li>
+                                            <li><b>Deployment:</b> cPanel, Apache server</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Boosted investor trust through transparency and real-time access to sensitive data.</li>
+                                            <li>Reduced operational overhead by automating investor communication.</li>
+                                            <li>Improved fundraising readiness by having structured data readily accessible to existing and new investors.</li>
+                                            <li>Created a single source of truth for financial performance, investor relations, and growth metrics.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Security & Compliance</h6>
+                                        <ul>
+                                            <li>All documents encrypted and served through secure endpoints.</li>
+                                            <li>Role-based access (admin vs. investor) with activity logging.</li>
+                                            <li>Optional NDA prompt before accessing confidential reports.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Security -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Developed a fully secure, role-based Investor Dashboard System that allows individual or institutional investors to track their investment performance, review financial data, receive key company updates, and download related documents — all through a personalized portal.<br><br>This system minimizes the need for emails and PDF sharing by giving real-time visibility into investment data and company health. Designed to work seamlessly for startups, private limited firms, or growing businesses managing multiple investors.</p>
+                                    <h5 class="mt-4 mb-3">Core Features</h5>
+                                    <ul>
+                                        <li><b>Investor Portal:</b>
+                                            <ul>
+                                                <li>Personal Dashboard: View total invested amount, ownership percentage, current valuation, and ROI.</li>
+                                                <li>Document Access: Secure download of pitch decks, balance sheets, investor reports, and financials.</li>
+                                                <li>Equity Tracking: See shareholding structure and dilution history, if applicable.</li>
+                                                <li>Payout History: Track dividends or profit-sharing payouts with downloadable receipts.</li>
+                                                <li>Announcements & Updates: Company-wide broadcasts, event invites, and board meeting summaries.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Admin Panel:</b>
+                                            <ul>
+                                                <li>Investor Management: Add, edit, or deactivate investor accounts.</li>
+                                                <li>Report Uploads: Upload and assign files to all investors or specific groups (e.g., early-stage vs. Series A).</li>
+                                                <li>Communication Hub: Send updates via in-app notifications or email to selected investors.</li>
+                                                <li>Valuation History: Manage and update company valuation for real-time dashboard reflection.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Analytics & Visualization:</b>
+                                            <ul>
+                                                <li>Integrated Chart.js to show investment growth, profit trends, and milestone achievements visually.</li>
+                                                <li>Year-wise comparison charts and financial health graphs.</li>
+                                                <li>Pie chart breakdown of equity, investor type, and sector allocation (optional).</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project 4 Modal -->
+        <div class="modal fade" id="project4Modal" tabindex="-1" role="dialog" aria-labelledby="project4ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project4ModalLabel">AI-Powered NPC Interaction System for Gaming</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject4" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj51.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj52.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>\
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj53.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj54.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj55.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject4" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject4" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Core AI:</b> OpenAI API (fine-tuned GPT model), Python</li>
+                                            <li><b>Machine Learning Framework:</b> TensorFlow (for lightweight processing & interaction tagging)</li>
+                                            <li><b>Backend/API:</b> Flask (Python REST API)</li>
+                                            <li><b>Integration Layer:</b> JSON-based payload exchange with game engine (Unity or Unreal)</li>
+                                            <li><b>Storage:</b> SQLite for lightweight NPC memory (optional)</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Boosted player immersion through lifelike, reactive NPCs that evolve with the storyline.</li>
+                                            <li>Reduced dependency on manual scripting of dialogue trees, saving hundreds of development hours.</li>
+                                            <li>Laid groundwork for emotion-aware AI storytelling, essential in RPG and simulation games.</li>
+                                            <li>Opened opportunities for procedural narrative generation and player-personalized quest design.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Challenges Overcome</h6>
+                                        <ul>
+                                            <li>Built a latency-optimized pipeline to ensure sub-second dialogue generation.</li>
+                                            <li>Managed token limits in LLM responses by dynamically summarizing dialogue history.</li>
+                                            <li>Created fallback layers for offline/default dialogue if AI API is unreachable.</li>
+                                            <li>Tuned prompt engineering to avoid inappropriate or lore-breaking responses.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Challenges -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Designed and implemented an intelligent Non-Player Character (NPC) communication system for gaming environments by fine-tuning a Large Language Model (LLM) to deliver context-aware dialogue. This system allows NPCs to dynamically respond to player actions, surroundings, and storyline progression, replacing rigid pre-scripted dialogues with adaptive, lifelike conversations.<br><br>This project bridges AI-powered natural language understanding with real-time game events to build emotionally intelligent, narratively rich, and unpredictable NPC behavior — paving the way for more immersive gameplay.</p>
+                                    <h5 class="mt-4 mb-3">Key Features</h5>
+                                    <ul>
+                                        <li><b>Contextual Dialogue Engine:</b>
+                                            <ul>
+                                                <li>NPC responses are generated based on:</li>
+                                                <li>Player's current quest or mission status</li>
+                                                <li>Recent interaction history</li>
+                                                <li>Emotional state or behavior of the NPC</li>
+                                                <li>Game world events or locations</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>LLM Fine-Tuning:</b>
+                                            <ul>
+                                                <li>Customized OpenAI model using fine-tuned datasets representing:</li>
+                                                <li>Character backstories</li>
+                                                <li>Dialog styles (e.g., medieval, futuristic, sci-fi)</li>
+                                                <li>Emotional tones (friendly, hostile, confused)</li>
+                                                <li>Incorporated few-shot prompts for dynamic narrative branching.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Real-Time Game Integration:</b>
+                                            <ul>
+                                                <li>API bridges between the game engine and AI server.</li>
+                                                <li>Game sends contextual payload (e.g., player's action, NPC state) to Python API, which returns an LLM-generated dialogue.</li>
+                                                <li>Implemented with modular design for easy plug-in to Unity or Unreal Engine.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Adaptive Learning (Optional Feature):</b>
+                                            <ul>
+                                                <li>Option to store conversational memory, allowing NPCs to "remember" players' choices across sessions.</li>
+                                                <li>Uses lightweight embeddings to track recurring themes or player behavior patterns.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project 5 Modal -->
+        <div class="modal fade" id="project5Modal" tabindex="-1" role="dialog" aria-labelledby="project5ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project5ModalLabel">B2B Printing Order Workflow Management Software</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject5" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj21.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj22.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj23.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj24.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject5" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject5" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Backend:</b> Laravel (PHP)</li>
+                                            <li><b>Frontend:</b> Blade, jQuery, Bootstrap</li>
+                                            <li><b>Database:</b> MySQL</li>
+                                            <li><b>PDF Handling:</b> domPDF or TCPDF for auto-generated invoices and order summaries</li>
+                                            <li><b>Authentication:</b> Laravel Breeze with client/employee role segregation</li>
+                                            <li><b>Deployment:</b> cPanel / VPS (Apache)</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Reduced order turnaround time by up to 50% with automated stage transitions and notifications.</li>
+                                            <li>Eliminated communication gaps through centralized client and internal chat modules.</li>
+                                            <li>Improved production accuracy with digital proofing and revision control.</li>
+                                            <li>Enabled scalable multi-client operations with proper workflow tracking.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Challenges Overcome</h6>
+                                        <ul>
+                                            <li>Implemented secure file handling and versioning for artwork and revisions.</li>
+                                            <li>Developed custom stage transitions for different types of print products (offset, digital, packaging).</li>
+                                            <li>Integrated role-based access to ensure sensitive order files are seen only by assigned teams.</li>
+                                            <li>Created bulk upload/order CSV support for clients placing large batch orders.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Challenges -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Built a specialized software solution for the printing and packaging industry, focusing on B2B operations where large orders, customizations, and approval cycles are involved. This platform digitizes the complete order lifecycle — from client onboarding to design upload, production tracking, and final dispatch — helping print manufacturers streamline operations, reduce delays, and maintain client transparency.</p>
+                                    <h5 class="mt-4 mb-3">Core Features</h5>
+                                    <ul>
+                                        <li><b>Client Portal:</b>
+                                            <ul>
+                                                <li>Order Placement: Clients can submit detailed printing orders including product type (e.g., brochure, labels, cartons), quantity, size, material, and finish.</li>
+                                                <li>File Uploads: Upload artwork/design files in supported formats (PDF, PNG, CDR).</li>
+                                                <li>Live Order Tracking: See real-time status updates for design review, print preparation, production, and dispatch.</li>
+                                                <li>Approval Workflow: Clients can preview soft proofs, request changes, or approve for print.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Admin & Production Panel:</b>
+                                            <ul>
+                                                <li>Order Management Dashboard: All incoming orders with filtering by status (New, Approved, In Production, Completed, Cancelled).</li>
+                                                <li>Design Review Module: Designers can upload revised files, assign revisions, and notify clients for approval.</li>
+                                                <li>Production Queue: View prioritized jobs, assign to machines, and set estimated completion time.</li>
+                                                <li>Dispatch & Delivery: Input courier details, tracking numbers, and notify clients upon dispatch.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Notifications & Logs:</b>
+                                            <ul>
+                                                <li>Email & in-app notifications on every order stage change.</li>
+                                                <li>Activity log for internal tracking (who did what and when).</li>
+                                                <li>Optional SMS alerts for high-priority clients.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="project6Modal" tabindex="-1" role="dialog" aria-labelledby="project2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style="min-height:90vh;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="project2ModalLabel">Tour-Based Referral & Booking System</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row no-gutters" style="min-height:70vh;">
+                                <!-- Left: Carousel + Tech Stack/Impact -->
+                                <div class="col-lg-6 bg-light d-flex flex-column align-items-center justify-content-start p-4">
+                                    <div id="carouselProject2" class="carousel slide mb-4 w-100" data-ride="carousel" style="max-width:500px;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="assets/imgs/proj62.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="assets/imgs/proj61.png" class="d-block w-100 project-img-16x9" alt="...">
+                                            </div>
+
+                                        </div>
+                                        <a class="carousel-control-prev bg-primary rounded-circle" href="#carouselProject2" role="button" data-slide="prev" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next bg-primary rounded-circle" href="#carouselProject2" role="button" data-slide="next" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <div class="w-100 mt-3">
+                                        <h6>Tech Stack</h6>
+                                        <ul>
+                                            <li><b>Backend:</b> Laravel (PHP)</li>
+                                            <li><b>Frontend:</b> Blade, Bootstrap, jQuery</li>
+                                            <li><b>Database:</b> MySQL</li>
+                                            <li><b>Authentication:</b> Laravel Breeze or Fortify with custom referral middleware</li>
+                                            <li><b>Payment Gateway:</b> Stripe, Razorpay, or PayPal integration</li>
+                                            <li><b>Notifications:</b> Laravel Mail for confirmations and referral alerts</li>
+                                            <li><b>Deployment:</b> Hosted on cPanel/VPS using Apache or Nginx</li>
+                                        </ul>
+                                        <h6 class="mt-4">Impact</h6>
+                                        <ul>
+                                            <li>Boosted signups through user-driven marketing, minimizing the need for paid ads.</li>
+                                            <li>Built trust with a payment-first system ensuring genuine referrals.</li>
+                                            <li>Created passive earning opportunities for travelers, increasing platform engagement.</li>
+                                            <li>Automated all backend calculations for commissions, simplifying admin tasks.</li>
+                                        </ul>
+                                        <h6 class="mt-4 mb-3">Challenges Overcome</h6>
+                                        <ul>
+                                            <li>Implemented secure referral code tracking via cookies and referral tables.</li>
+                                            <li>Built a payment verification hook to avoid fake referrals or earnings.</li>
+                                            <li>Created a conflict-free earnings model with withdrawal limits and frequency controls.</li>
+                                            <li>Added scalable tour logic to support multiple ongoing tour campaigns.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Right: Overview, Features, Challenges -->
+                                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <p>Designed and implemented a Laravel-powered web application for travel and tour agencies, integrating a paid referral system that incentivizes user growth. Users can register for a tour by paying a booking fee and generate a unique referral code or link. When others join using their referral, the original user earns a fixed or percentage-based commission, creating a passive earning structure tied to active participation.</p>
+                                    <h5 class="mt-4 mb-3">Key Features</h5>
+                                    <ul>
+                                        <li><b>User Module:</b>
+                                            <ul>
+                                                <li>Registration with Payment: Users must pay a one-time or tour-specific booking amount to create an account.</li>
+                                                <li>Dashboard: Access tour details, personal referrals, total earnings, and booking status.</li>
+                                                <li>Referral System: Each user receives a unique referral code/link to invite others.</li>
+                                                <li>Earnings Wallet: Displays earnings, withdrawal requests, and referral history.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Referral Logic:</b>
+                                            <ul>
+                                                <li>Multi-level Referrals (Optional): You can configure the system to support Level 1, Level 2, etc. for referral depth.</li>
+                                                <li>Commission Settings: Admin can set a fixed reward or a percentage of the booking amount per referral.</li>
+                                                <li>Auto Commission Trigger: Commissions are credited only after successful payment by the referred user.</li>
+                                            </ul>
+                                        </li>
+                                        <li><b>Admin Panel:</b>
+                                            <ul>
+                                                <li>User Management: View user list, payment status, and referral counts.</li>
+                                                <li>Tour Management: Create, edit, and activate/deactivate tour campaigns.</li>
+                                                <li>Referral Overview: Track who referred whom, and view commission logs.</li>
+                                                <li>Payout Management: Approve or auto-disburse user withdrawal requests.</li>
+                                                <li>Analytics Dashboard: Monitor real-time signups, revenue, and referral performance.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of projects section -->
+
+    <!-- certifications section -->
+    <section class="section" id="certifications">
+        <div class="container text-center">
+            <p class="section-subtitle">Certifications & Hackathons</p>
+            <h6 class="section-title mb-6">Certifications</h6>
+            <div class="timeline mx-auto" style="max-width:700px; position:relative;">
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5">
+                        <div class="card-body text-left">
+                            <h5 class="card-title mb-1">RECKON 5.0</h5>
+                            <p class="mb-0">Secured a top 10 position in Reckon 5.0, a national-level 24-hour hackathon that challenged participants to solve real-world problems through innovative tech solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5">
+                        <div class="card-body text-left">
+                            <h5 class="card-title mb-1">HackHazards</h5>
+                            <p class="mb-0">Participated in HackHazards, a Delhi-based hackathon focused on solving urban and environmental safety challenges. Collaborated with a multidisciplinary team to develop a tech-driven prototype.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item mb-5 position-relative">
+                    <div class="timeline-dot bg-primary position-absolute" style="left:-30px; top:10px; width:16px; height:16px; border-radius:50%;"></div>
+                    <div class="card border-0 shadow-sm pl-5">
+                        <div class="card-body text-left">
+                            <h5 class="card-title mb-1">Google Cloud</h5>
+                            <p class="mb-0">Earned the Google Cloud certification after completing 20+ hands-on labs and mastering the use of Google Cloud Console. Worked on real-world cloud computing tasks, including setting up cloud environments, managing virtual machines, implementing security practices, and configuring networking solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="position:absolute; left:-22px; top:0; bottom:0; width:2px; background:#695aa6; z-index:0;"></div>
+            </div>
+        </div>
+    </section>
+    <!-- end of certifications section -->
+
+    <!-- contact/education/languages/hobbies section -->
+    <section class="section bg-light" id="profile-details">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-4">
+                    <h6 class="section-title mb-3">Contact</h6>
+                    <p><i class="ti-mobile"></i> +91 9680181605</p>
+                    <p><i class="ti-email"></i> noman@develuptech.in<br>noman.khan96801@gmail.com</p>
+                    <p><i class="ti-location-pin"></i> K.N.N. Jodhpur Rajasthan</p>
+                    <p><i class="ti-world"></i> www.develuptech.in</p>
+                    <p><i class="ti-linkedin"></i> <a href="https://linkedin.com/in/noman-khan-develup-tech" target="_blank">LinkedIn</a></p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="section-title mb-3">Education</h6>
+                    <p><strong>2022-2026</strong><br>Jiet Universe<br>B-Tech (CSE) in Data Science</p>
+                    <p><strong>2020-2022</strong><br>Maulana Azad School<br>Senior Secondary School</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="section-title mb-3">Languages</h6>
+                    <p>English (Fluent)<br>Hindi (Fluent)</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="section-title mb-3">Hobbies</h6>
+                    <ul class="list-unstyled">
+                        <li>Composing Music</li>
+                        <li>Writing Lyrics</li>
+                        <li>Chess</li>
+                        <li>Tech Blogging</li>
+                        <li>Video Gaming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of contact/education/languages/hobbies section -->
+
+    <!-- skills section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <p class="section-subtitle text-center">What Are My Strengths?</p>
+            <h6 class="section-title mb-6 text-center">Skills</h6>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">Python <span class="float-right">95%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">PHP<span class="float-right">90%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">JavaScript <span class="float-right">70%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">Laravel <span class="float-right">60%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">MySQL <span class="float-right">90%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">Data Science <span class="float-right">60%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">Machine Learning <span class="float-right">50%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="font-weight-bold">Web Development <span class="float-right">95%</span></h6>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of skills section -->
+
+    <!-- section -->
+    <section class="section-sm bg-primary">
+        <!-- container -->
+        <div class="container text-center text-sm-left">
+            <!-- row -->
+            <div class="row align-items-center">
+                <div class="col-sm offset-md-1 mb-4 mb-md-0">
+                    <h6 class="title text-light">Want to work with me?</h6>
+                    <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
+                </div>
+                <div class="col-sm offset-sm-2 offset-md-3">
+                    <button class="btn btn-lg my-font btn-light rounded" id="hireMeBtn">Hire Me</button>
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </section> <!-- end of section -->
+
+    <!-- blog section -->
+    <section class="section" id="blog">
+        <!-- container -->
+        <div class="container text-center">
+            <p class="section-subtitle">Recent Posts?</p>
+            <h6 class="section-title mb-6">Blog</h6>
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img-1.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Is This the Dumbest Fiverr/Upwork Alternative Ever? Probably.</h6>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: Noman khan</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 5</a>
+                            <a href="#"><i class="ti-eye"></i> 3.9k+</a>
+                        </p>
+                        <p>Hey folks,
+                            I'm working on a startup idea that's like Fiverr or Upwork but specifically built for non-tech founders and small businesses who struggle with hiring freelancers for tech or creative work.</p>
+
+                        <p><b>What makes it different?</b>
+                        </p>
+                        <p>✅ Verified Freelancers Only
+                            Freelancers can't just sign up and start bidding. They go through interviews, portfolio checks, and skill assessments before being allowed on the platform. This keeps quality high and eliminates fakes or underperformers.</p>
+
+                        <a href="https://www.reddit.com/r/StartUpIndia/comments/1lj60j1/is_this_the_dumbest_fiverrupwork_alternative_ever/" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img-2.jpg" class="blog-card-img" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Question for Indian founders and early-stage startups:</h6>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 7</a>
+                            <a href="#"><i class="ti-eye"></i> 3.8k</a>
+                        </p>
+
+                        <p>When you needed to build your startup's website, software, or product MVP — did you:
+
+                            Use freelancer platforms like Fiverr/Upwork?
+
+                            Hire someone in-house or outsource to an agency/team?
+
+                            If you did use a freelancer — which platform did you prefer, and were there any India-based platforms you trusted more than Fiverr/Upwork?</p>
+
+                        <a href="https://www.reddit.com/r/StartUpIndia/comments/1li9rhk/question_for_indian_founders_and_earlystage/" class="blog-card-link">Read more <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+        </div><!-- end of container -->
+        <div class="text-center mt-4">
+            <a href="blogs.html" class="btn btn-primary btn-lg">More Blogs</a>
+        </div>
+    </section><!-- end of blog section -->
+
+    <!-- contact section -->
+    <section class="section" id="contact">
+        <div class="container text-center">
+            <p class="section-subtitle">How can you communicate?</p>
+            <h6 class="section-title mb-5">Contact Me</h6>
+            <!-- contact form -->
+            <form action="contact.php" method="POST" class="contact-form col-md-10 col-lg-8 m-auto">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <input type="text" name="name" size="50" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <textarea name="comment" id="comment" rows="6" class="form-control" placeholder="Write Something" required></textarea>
+                    </div>
+                    <div class="form-group col-sm-12 mt-3">
+                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
+                    </div>
+                </div>
+            </form><!-- end of contact form -->
+        </div><!-- end of container -->
+    </section><!-- end of contact section -->
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer">
+            <p class="mb-0">Copyright
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> &copy; <a href="http://www.devcrud.com">DevCRUD</a> Distribution <a href="https://themewagon.com">ThemeWagon</a>
+            </p>
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="assets/js/meyawo.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hireBtn = document.getElementById('hireMeBtn');
+            if (hireBtn) {
+                hireBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var contactSection = document.getElementById('contact');
+                    var textarea = document.querySelector('form[action="contact.php"] textarea[name="comment"]');
+                    if (textarea) {
+                        textarea.value = 'Hi Noman, I am interested in working with you on a project';
+                    }
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
